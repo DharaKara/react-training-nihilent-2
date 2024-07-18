@@ -15,7 +15,7 @@ app.use(bodyParser.json()); // Always Always keep it on top of middleware
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'Password@123',
+    password: 'Rptdh1235509!!',
     database: 'myapp_db'
 })
 
