@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD books</title>
+</head>
+
+<body>
+    <h1>CRUD books</h1>
+    <h2>Insert</h2>
+    <form id="insertForm">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="publication_date">Publication Date:</label>
+        <input type="date" id="publication_date" name="publication_date" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h2>Update</h2>
+    <form id="updateForm" action="/books/:name" method="PUT">
+        <label for="updateName">Name of Book to Update:</label>
+        <input type="text" id="updateName" name="updateName" required><br><br>
+        <label for="updateAuthor">New Author:</label>
+        <input type="text" id="updateAuthor" name="updateAuthor" required><br><br>
+        <label for="updatePublicationDate">New Publication Date:</label>
+        <input type="date" id="updatePublicationDate" name="updatePublicationDate" required><br><br>
+        <button type="submit">Update</button>
+    </form>
+    
+    
+    <h2>Delete</h2>
+    <form id="deleteForm" action="/books/:name" method="DELETE">
+        <label for="deleteName">Name of Book to Delete:</label>
+        <input type="text" id="deleteName" name="deleteName" required><br><br>
+        <button type="submit">Delete</button>
+    </form>
+    
+    <script src="./js/books.js" type="text/javascript"></script>
+</body>
+
+</html>

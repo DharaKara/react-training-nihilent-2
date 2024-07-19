@@ -1,0 +1,47 @@
+exports.login = (req, res) => {
+    const { email, password } = req.body;
+    const pool = req.pool;
+    const userSql = `SELECT * FROM users WHERE email = ? AND password = ?`;
+    pool.query(userSql, [email, password], (err, userResults) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+        
+        if (userResults.length > 0) {
+            const user = userResults[0];
+            return res.json({
+                status: 'success',
+                data: {
+                    id: user.id,
+                    email: user.email,
+                    role: 'user' 
+                },
+                redirect: 'books.html'
+            });
+        }
+        
+        const adminSql = `SELECT * FROM admin WHERE email = ? AND password = ?`;
+        pool.query(adminSql, [email, password], (err, adminResults) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Database error' });
+            }
+            
+            if (adminResults.length > 0) {
+                const admin = adminResults[0];
+                return res.json({
+                    status: 'success',
+                    data: {
+                        id: admin.id,
+                        email: admin.email,
+                        role: 'admin' // Indicate the role
+                    },
+                    redirect: 'CRUDbooks.html'
+                });
+            }
+            
+            return res.status(401).json({ error: 'Invalid credentials' });
+        });
+    });
+};
