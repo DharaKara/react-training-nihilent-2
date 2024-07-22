@@ -1,4 +1,3 @@
-// // index.js
 // index.js
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -14,7 +13,7 @@ const newUserRoutes = require('./routes/newUserRoutes')
 const loginRoutes = require('./routes/loginRoutes')
 const app = express();
 const port = 3000;
-
+const cors = require('cors');
  
 app.use(bodyParser.urlencoded({extended: false})); // to parse the form data
 app.use(bodyParser.json()); // Always Always keep it on top of middleware
@@ -26,7 +25,7 @@ const pool = mysql.createPool({
 })
 //pool is the same as connection strings
 
- 
+app.use(cors()); 
 app.use((req, res, next) => {
     req.pool = pool;
     next();
@@ -72,3 +71,5 @@ app.listen(port, () => {
 // app.get('/aboutme',(req,res)=>{
 //     res.sendFile(path.join(__dirname,'public','aboutme.html'));
 // })
+
+
