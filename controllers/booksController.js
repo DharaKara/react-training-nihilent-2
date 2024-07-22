@@ -1,4 +1,3 @@
-
 exports.saveFormData = (req, res) => {
     const {author,name,publication_date} = req.body;
     const pool = req.pool;
